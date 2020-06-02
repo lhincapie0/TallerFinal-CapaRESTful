@@ -65,6 +65,9 @@ public class TsscStoryRestController {
 	public TsscStory editStory(@RequestBody TsscStory story)
 	{
 		try {
+			System.out.println("entra al server" + story);
+			System.out.println(storyService);
+
 			return storyService.editStory(story);
 		} catch (NullStoryException | NotExistingStory | BusinessValueException | PriorityException
 				| InitialSprintException | NotExistingGameException e) {

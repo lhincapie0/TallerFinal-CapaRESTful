@@ -35,7 +35,6 @@
 						
 							
 							<tr>
-								<th>ID</th>
 								<th>Auto start</th>
 								<th>Interval Running</th>
 								<th>Last Play Time</th>
@@ -54,7 +53,6 @@
 						</thead>
 						<tbody>
 							<tr th:each="timecontrol : ${timecontrols}">
-								<td class="text-info" th:text="${timecontrol.id}"></td>
 								<td class="text-info" th:text="${timecontrol.autostart}"></td>
 								<td class="text-info" th:text="${timecontrol.intervalRunning}"></td>
 								<td class="text-info"  th:text = "${timecontrol.lastPlayTime}"> </td>
@@ -63,7 +61,7 @@
 								<td class="text-info" th:text = "${timecontrol.state}"></td>
 								<td class="text-info" th:text = "${timecontrol.timeInterval}"></td>
 								<td class="text-info" th:text = "${timecontrol.type}"></td>
-								<td"><a  th:href="@{/timecontrols/edit/{id}(id=${timecontrol.id})}"
+								<td><a  th:href="@{/timecontrols/edit/{id}(id=${timecontrol.id})}"
 									class="btn btn-primary"><i
 										class="fas fa-edit ml-2"></i></a></td>
 

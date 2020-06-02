@@ -27,6 +27,7 @@ import co.edu.icesi.fi.tics.tssc.exceptions.NullStoryException;
 import co.edu.icesi.fi.tics.tssc.exceptions.PriorityException;
 import co.edu.icesi.fi.tics.tssc.model.GameValidation;
 import co.edu.icesi.fi.tics.tssc.model.StoryValidation;
+import co.edu.icesi.fi.tics.tssc.model.StoryValidation2;
 import co.edu.icesi.fi.tics.tssc.model.TsscGame;
 import co.edu.icesi.fi.tics.tssc.model.TsscStory;
 import co.edu.icesi.fi.tics.tssc.model.TsscTopic;
@@ -81,10 +82,16 @@ public class StoryController {
 		{
 			if(bindingResult.hasErrors())
 			{
+				System.out.println("STORY "+story.getIdGame());
+				System.out.println("STORY "+story.getTsscGame());
+
+
 				model.addAttribute("games", gameDelegate.findAll());
 				return "stories/add-story";
 			}else
 			{
+				System.out.println(story.toString());
+
 				storyDelegate.saveStory(story);
 			}
 		}else {
@@ -115,17 +122,29 @@ public class StoryController {
 			}
 		model.addAttribute("story", story);
 		model.addAttribute("games", gameDelegate.findAll());
+
 		return "stories/edit-story";
 	}
 	
 	@PostMapping("/stories/edit/{id}")
 	public String editStory( @PathVariable("id") long id,
-			@RequestParam(value = "action", required = true) String action, @Validated(StoryValidation.class) @ModelAttribute("story") TsscStory story, BindingResult bindingResult,
+			@RequestParam(value = "action", required = true) String action, @Validated(StoryValidation2.class) @ModelAttribute("story") TsscStory story, BindingResult bindingResult,
 			Model model) throws NullStoryException, NotExistingStory, BusinessValueException, PriorityException, InitialSprintException, NotExistingGameException  {
 		if (action != null && !action.equals("Cancelar")) {
+		
+			story.setIdGame(2);
+			story.setTsscGame(gameDelegate.findById(2));
 			if (bindingResult.hasErrors()) {
+				System.out.println(story.getIdGame());
+
+				model.addAttribute("story", story);
+				model.addAttribute("games", gameDelegate.findAll());
+		
 				return "/stories/edit-story";
 			} else {
+				System.out.println("AQUI ENTRA");
+				System.out.println(story.toString());
+
 				storyDelegate.editStory(story);
 			}
 		}

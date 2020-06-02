@@ -75,6 +75,8 @@ public class StoryServiceImpl implements StoryService{
 					{
 						if((story.getPriority().compareTo(BigDecimal.ZERO)!=0))
 						{
+							System.out.println("aqui entra!!!!!!");
+
 								if(gameDao.findById(story.getTsscGame().getId())!= null)
 								{
 									story.setTsscGame(story.getTsscGame());

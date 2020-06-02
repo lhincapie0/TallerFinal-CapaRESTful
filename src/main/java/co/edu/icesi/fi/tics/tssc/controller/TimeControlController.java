@@ -35,7 +35,7 @@ public class TimeControlController {
 
 	private TsscTimeControlDelegate timecontrolDelegate;
 	private TsscGameDelegate gameDelegate;
-	private long actualIdGame;
+	private long actualIdGame = 1;
 	
 	@Autowired
 	public TimeControlController(TsscTimeControlDelegate timecontrolDelegate, TsscGameDelegate gameDelegate)
@@ -76,26 +76,39 @@ public class TimeControlController {
 	{
 		if(!action.equals("Cancelar"))
 		{
-			System.out.println(actualIdGame);
+			System.out.println(" ACTUAL ID "  + actualIdGame);
 			TsscGame game = gameDelegate.findById(actualIdGame);
 			timecontrol.setTsscGame(game);
 			System.out.println(game);
-			//timecontrolDelegate.saveTimeControl(timecontrol);
+			timecontrolDelegate.saveTimeControl(timecontrol);
 			
 		}else {
-			return "timecontrols/index";
+			return "redirect:/timecontrols/getTimecontrols/"+actualIdGame;
 		}
-		return "redirect:/timecontrols/";
+		return "redirect:/timecontrols/getTimecontrols/"+actualIdGame;
 	}
+	
+	@GetMapping("/timecontrols/del/{id}")
+	public String deleteStory(@PathVariable("id") long id) {
+		TsscTimecontrol timecontrol =timecontrolDelegate.findById(id);
+		if(timecontrol == null)
+			{
+			 new IllegalArgumentException("Invalidad Timecontrol Id: "+id);
+			}
+		timecontrolDelegate.deleteTimeControl(id);
+		return "redirect:/timecontrols/getTimecontrols/"+actualIdGame;
+	}
+
 	
 	@GetMapping("/timecontrols/edit/{id}")
 	public String editTimecontrolShow(@PathVariable("id") long id, Model model) {
 		TsscTimecontrol timecontrol =timecontrolDelegate.findById(id);
 		if(timecontrol == null)
 			{
-			 new IllegalArgumentException("Invalidad Story Id: "+id);
+			 new IllegalArgumentException("Invalidad Timecontrol Id: "+id);
 			}
 		model.addAttribute("timecontrol", timecontrol);
+		System.out.println("EDIT");
 		return "timecontrols/edit-timecontrol";
 	}
 	
@@ -105,10 +118,11 @@ public class TimeControlController {
 			Model model) throws NullStoryException, NotExistingStory, BusinessValueException, PriorityException, InitialSprintException, NotExistingGameException  {
 		if (action != null && !action.equals("Cancelar")) {
 			
+				timecontrol.setTsscGame(gameDelegate.findById(actualIdGame));
 				timecontrolDelegate.editTimeControl(timecontrol);
 			
 		}
-		return "redirect:/stories/";
+		return "redirect:/timecontrols/getTimecontrols/"+actualIdGame;
 	}
 
 }

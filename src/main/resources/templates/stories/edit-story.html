@@ -66,16 +66,16 @@
 						
 						
 						
-						<div class="form-group col-md-6">
+					<	<div class="form-group col-md-6">
 							<label for="tsscGame" class="col-form-label">Juego asociado</label> 
 							<br>
 							<select
-								th:field="*{tsscGame}">
+								th:field="*{tssc_game_id}">
 								<option th:each="game : ${games}" th:value="${game.id}"
 									class="form-control" th:text="${game.name}"
-									th:selected="${story.tsscGame=game}"></option>
+									th:selected="${story.tssc_game_id=game.id}"></option>
 							</select> 
-						</div>
+						</div> 
 						
 						
 					

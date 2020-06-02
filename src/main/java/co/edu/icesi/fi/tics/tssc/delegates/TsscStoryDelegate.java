@@ -81,6 +81,8 @@ public class TsscStoryDelegate implements ITsscStoryDelegate {
 	}
 	@Override
 	public void editStory(TsscStory story) {
+		
+		System.out.println("entra al delegado");
 		restTemplate.put(URI + "/edit", story, TsscStory.class);
 		
 	}

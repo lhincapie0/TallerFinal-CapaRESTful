@@ -20,7 +20,7 @@
 		<h2 class="mb-5">Modificar Cronograma</h2>
 		<div class="row">
 			<div class="col-md-6">
-				<form action="#" th:action="@{/timecontrols/add/}" th:object="${timecontrol}"
+				<form action="#" th:action="@{/timecontrols/edit/{id}(id=${timecontrol.id})}"th:object="${timecontrol}"
 					method="post">
 					<div class="row">
 					
@@ -83,7 +83,7 @@
 					<div class="row">
 						<div class="col-md-6 mt-3">
 							<input type="submit" name="action" class="btn btn-primary"
-								value="Añadir Cronograma">
+								value="Modificar Cronograma">
 						</div>
 					
 						<div class="col-md-3 mt-3">
