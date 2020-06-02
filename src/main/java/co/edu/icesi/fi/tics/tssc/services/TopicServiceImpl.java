@@ -13,7 +13,6 @@ import co.edu.icesi.fi.tics.tssc.exceptions.NotEnoughSprintsException;
 import co.edu.icesi.fi.tics.tssc.exceptions.NotExistingTopic;
 import co.edu.icesi.fi.tics.tssc.exceptions.NullTopicException;
 import co.edu.icesi.fi.tics.tssc.model.TsscTopic;
-import co.edu.icesi.fi.tics.tssc.repositories.TopicRepository;
 
 @Service
 public class TopicServiceImpl implements TopicService{

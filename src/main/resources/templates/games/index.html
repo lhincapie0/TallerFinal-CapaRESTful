@@ -42,8 +42,7 @@
 								<th sec:authorize="hasRole('super') OR hasRole('admin')">Borrar</th>
 								<th>Historias</th>
 								<th>Tema</th>
-								
-								
+								<th>Cronogramas</th>
 								
 							</tr>
 						</thead>
@@ -62,7 +61,7 @@
 									class="btn btn-primary"><i
 										class="fas fa-edit ml-1"></i></a></td>
 
-								<td sec:authorize="hasRole('super') OR hasRole('admin')" ><a  th:href="@{/games/del/{id}(id=${game.id})}"
+					<td sec:authorize="hasRole('super') OR hasRole('admin')" ><a  th:href="@{/games/del/{id}(id=${game.id})}"
 									class="btn btn-primary" ><i
 										class="fas fa-calendar-times ml-1"></i></a></td>
 						<td><a  th:href="@{/stories/getStories/{id}(id=${game.id})}"
@@ -77,6 +76,11 @@
 					</td>
 					<td th:if="${game.tsscTopic == null}"> No tiene tema
 					</td>
+					
+					<td><a  th:href="@{/timecontrols/getTimecontrols/{id}(id=${game.id})}"
+									class="btn btn-primary"><i class="far fa-calendar-alt"></i></a>
+								</td>
+				
 							</tr>
 						</tbody>
 					</table>

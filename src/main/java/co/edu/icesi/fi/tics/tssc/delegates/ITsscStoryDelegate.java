@@ -13,6 +13,6 @@ public interface ITsscStoryDelegate {
 	public TsscStory findById(long id);
 	public void deleteStory(long id);
 	public Iterable<TsscStory> findAll();
-	void editStory(TsscStory story);
-	Iterable<TsscStory> findByGameId(long id);
+	public void editStory(TsscStory story);
+	public Iterable<TsscStory> findByGameId(long id);
 }

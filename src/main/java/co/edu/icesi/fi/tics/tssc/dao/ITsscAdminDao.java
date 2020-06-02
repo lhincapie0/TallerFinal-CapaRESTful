@@ -11,5 +11,6 @@ public interface ITsscAdminDao {
 	public void delete(TsscAdmin entity);
 	public List<TsscAdmin> findAll();
 	public TsscAdmin findById(long id);
+	List<TsscAdmin> findByUsername(String username);
 
 }

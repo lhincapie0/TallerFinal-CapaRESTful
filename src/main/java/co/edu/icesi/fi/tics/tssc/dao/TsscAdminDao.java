@@ -30,6 +30,12 @@ public class TsscAdminDao implements ITsscAdminDao{
 	}
 
 	@Override
+	public List<TsscAdmin> findByUsername(String username) {
+		String jpql = "SELECT a FROM TsscAdmin a WHERE a.username ='"+username+"'";
+		return entityManager.createQuery(jpql).getResultList();
+	}
+	
+	@Override
 	public void delete(TsscAdmin entity) {
 		entityManager.remove(entity);
 	}

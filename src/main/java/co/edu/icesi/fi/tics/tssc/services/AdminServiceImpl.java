@@ -9,7 +9,6 @@ import co.edu.icesi.fi.tics.tssc.dao.TsscAdminDao;
 import co.edu.icesi.fi.tics.tssc.exceptions.NotExistingAdminException;
 import co.edu.icesi.fi.tics.tssc.exceptions.NullAdminException;
 import co.edu.icesi.fi.tics.tssc.model.TsscAdmin;
-import co.edu.icesi.fi.tics.tssc.repositories.AdminRepository;
 
 @Service
 public class AdminServiceImpl implements AdminService{

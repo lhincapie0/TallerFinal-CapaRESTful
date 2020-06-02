@@ -2,6 +2,13 @@ package co.edu.icesi.fi.tics.tssc.model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.math.BigDecimal;
 import java.time.LocalTime;
 import java.util.List;
@@ -21,12 +28,17 @@ public class TsscTimecontrol implements Serializable {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TSSC_TIMECONTROL_ID_GENERATOR")
 	private long id;
 
+	
 	private String autostart;
 
+	
 	@Column(name = "INTERVAL_RUNNING")
 	private BigDecimal intervalRunning;
 
+	
 	@Column(name = "LAST_PLAY_TIME")
+	@JsonFormat(pattern = "HH:mm")
+	@DateTimeFormat(iso = ISO.TIME)
 	private LocalTime lastPlayTime;
 
 	private String name;

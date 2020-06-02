@@ -19,17 +19,10 @@ import co.edu.icesi.fi.tics.tssc.exceptions.NullStoryException;
 import co.edu.icesi.fi.tics.tssc.exceptions.PriorityException;
 import co.edu.icesi.fi.tics.tssc.model.TsscGame;
 import co.edu.icesi.fi.tics.tssc.model.TsscStory;
-import co.edu.icesi.fi.tics.tssc.repositories.GameRepository;
-import co.edu.icesi.fi.tics.tssc.repositories.StoryRepository;
 
 @Service
 public class StoryServiceImpl implements StoryService{
-	
-	/**@Autowired
-	private StoryRepository storyRepository;
-	@Autowired
-	private GameRepository gameRepository;**/
-	
+
 	@Autowired
 	private TsscStoryDao storyDao;
 	

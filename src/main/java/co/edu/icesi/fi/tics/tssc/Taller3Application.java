@@ -51,7 +51,7 @@ public class Taller3Application {
 		
 	//CREACIÓN DE USUARIOS
 		
-		TsscAdmin admin1 = new TsscAdmin();
+		/**TsscAdmin admin1 = new TsscAdmin();
 		admin1.setPassword("{noop}123");
 		admin1.setUsername("Super Administrador");
 		admin1.setUser("Super Administrador");
@@ -120,7 +120,7 @@ public class Taller3Application {
 		story2.setInitialSprint(new BigDecimal("10000"));
 		
 		storyService.saveStory(story,game);
-		storyService.saveStory(story2, game);
+		storyService.saveStory(story2, game);**/
 		
 		
 	

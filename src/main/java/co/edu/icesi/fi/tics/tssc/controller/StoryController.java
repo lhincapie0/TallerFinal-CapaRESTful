@@ -30,8 +30,6 @@ import co.edu.icesi.fi.tics.tssc.model.StoryValidation;
 import co.edu.icesi.fi.tics.tssc.model.TsscGame;
 import co.edu.icesi.fi.tics.tssc.model.TsscStory;
 import co.edu.icesi.fi.tics.tssc.model.TsscTopic;
-import co.edu.icesi.fi.tics.tssc.repositories.SprintRepositoryImpl;
-import co.edu.icesi.fi.tics.tssc.repositories.StoryRepository;
 import co.edu.icesi.fi.tics.tssc.services.GameServiceImpl;
 import co.edu.icesi.fi.tics.tssc.services.StoryServiceImpl;
 

@@ -1,6 +1,7 @@
 package co.edu.icesi.fi.tics.tssc.security;
 
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,8 +11,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import co.edu.icesi.fi.tics.tssc.dao.TsscAdminDao;
 import co.edu.icesi.fi.tics.tssc.model.TsscAdmin;
-import co.edu.icesi.fi.tics.tssc.repositories.AdminRepository;
 
 
 
@@ -19,12 +20,13 @@ import co.edu.icesi.fi.tics.tssc.repositories.AdminRepository;
 public class MyCustomUserDetailsService implements UserDetailsService {
 	
 	@Autowired
-	private AdminRepository adminRepository;
+	private TsscAdminDao adminDao;
 	
 	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		 TsscAdmin tsscAdmin = adminRepository.findByUsername(username).get();
+		List<TsscAdmin> resp = adminDao.findByUsername(username);
+		 TsscAdmin tsscAdmin = resp.get(0);
 		
 		if (tsscAdmin != null) {
 			User.UserBuilder builder = User.withUsername(username).password(tsscAdmin.getPassword()).roles(tsscAdmin.getSuperAdmin().toString());

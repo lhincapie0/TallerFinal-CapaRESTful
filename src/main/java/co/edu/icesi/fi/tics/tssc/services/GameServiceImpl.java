@@ -21,8 +21,6 @@ import co.edu.icesi.fi.tics.tssc.model.TsscGame;
 import co.edu.icesi.fi.tics.tssc.model.TsscStory;
 import co.edu.icesi.fi.tics.tssc.model.TsscTimecontrol;
 import co.edu.icesi.fi.tics.tssc.model.TsscTopic;
-import co.edu.icesi.fi.tics.tssc.repositories.GameRepository;
-import co.edu.icesi.fi.tics.tssc.repositories.TopicRepository;
 
 @Service
 public class GameServiceImpl implements GameService{
