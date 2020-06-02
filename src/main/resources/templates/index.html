@@ -19,13 +19,13 @@
 	<div th:switch="${index}" class="container my-5">
 		<div class="row">
 			<div class="col-md-12">
-				<h1 align="center" style="font-family:cursive"  th:case="null">Filtrar por fecha</h1>
+				<h1 align="center" style="font-family:cursive"  th:case="null">Simulación Scrum - Universidad Icesi</h1>
 				<p></p>
-				<p align="center" style="font-family:cursive"><a href="/games/"><i class="fas fa-dice ml-2"></i> Filtrar juegos por fecha </a></p>
-				<p align="center" style="font-family:cursive"><a href="/stories/"><i class="fas fa-history ml-2"></i> Filtrar historias por fecha</a></p>
+				<p align="center" style="font-family:cursive"><a href="/games/"><i class="fas fa-dice ml-2"></i> Gestión de juegos </a></p>
+				<p align="center" style="font-family:cursive" sec:authorize="hasRole('super')"><a href="/topics/"><i class="fas fa-drum-steelpan ml-2"></i> Gestión de temas</a></p>
+				<p align="center" style="font-family:cursive"><a href="/stories/"><i class="fas fa-history ml-2"></i> Gestión de historias</a></p>
 				
-				<p align="center"  style = "font-family:cursive"><a href="/games/filterByDate"><i class="fas fa-filter ml-2"></i>Filtrar por fechas</a></p>
-				<p align="center"  style = "font-family:cursive"><a href="/stories/filterByDate"><i class="fas fa-filter ml-2"></i>Filtrar por fechas</a></p>
+				<p align="center"  style = "font-family:cursive"><a href="/stories/"><i class="fas fa-filter ml-2"></i>Filtrar por fechas</a></p>
 				
 				<p align="center" style="font-family:cursive"><a href="/logout"><i class="fas fa-sign-out-alt ml-2"></i> Cerrar sesión</a></p>
 			</div>
