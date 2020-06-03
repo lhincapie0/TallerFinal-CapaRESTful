@@ -1,6 +1,7 @@
 package co.edu.icesi.fi.tics.tssc.delegates;
 
 import java.nio.charset.Charset;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Base64;
@@ -77,6 +78,20 @@ public class TsscTopicDelegate implements ITsscTopicDelegate{
 	}
 	
 	
+	public Iterable<TsscTopic> findByDate(LocalDate date1) {
+		TsscTopic[] topics = restTemplate.getForObject(URL +"findByDate/"+date1, TsscTopic[].class);
+		List<TsscTopic> listTopics;
+		try {
+			listTopics = Arrays.asList(topics);
+			return listTopics;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+
+
 	@Override
 	public Iterable<TsscTopic> findAll()
 	{

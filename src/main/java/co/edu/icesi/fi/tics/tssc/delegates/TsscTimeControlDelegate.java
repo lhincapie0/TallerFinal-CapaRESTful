@@ -29,7 +29,7 @@ public class TsscTimeControlDelegate implements ITsscTimeControlDelegate{
 
 	@Override
 	public TsscTimecontrol saveTimeControl(TsscTimecontrol timecontrol) {
-		return restTemplate.postForEntity("http://localhost:8080/api/timecontrols/add", timecontrol, TsscTimecontrol.class).getBody();
+		return restTemplate.postForObject("http://localhost:8080/api/timecontrols/add", timecontrol, TsscTimecontrol.class);
 
 	}
 
@@ -71,6 +71,7 @@ public class TsscTimeControlDelegate implements ITsscTimeControlDelegate{
 		
 	}
 
+	
 	@Override
 	public Iterable<TsscTimecontrol> findTimeControlsByGame(long id) {
 		TsscTimecontrol[] timecontrols = restTemplate.getForObject("http://localhost:8080/api/timecontrols/findByGameId/"+id, TsscTimecontrol[].class);

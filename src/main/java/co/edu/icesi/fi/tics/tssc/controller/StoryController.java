@@ -157,22 +157,5 @@ public class StoryController {
 	}
 	
 
-	@GetMapping("/stories/filterByDate")
-	public String filterByDate(Model model) {
-		model.addAttribute("params", new RangeParams());
-		return "stories/filterByDate";
-	}
-
-
-	
-	@PostMapping("/stories/filterByDate")
-	public String filt(@ModelAttribute("params")  RangeParams params, Model model )
-	{
-		model.addAttribute("stories",storyDelegate.findByDate(params.getDate1(),params.getDate2()));
-		model.addAttribute("games", gameDelegate.findAll());
-
-		return "stories/stories-range";
-
-	}
 
 }

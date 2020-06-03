@@ -19,6 +19,7 @@ import co.edu.icesi.fi.tics.tssc.exceptions.NotEnoughGroupsException;
 import co.edu.icesi.fi.tics.tssc.exceptions.NotEnoughSprintsException;
 import co.edu.icesi.fi.tics.tssc.exceptions.NotExistingTopic;
 import co.edu.icesi.fi.tics.tssc.exceptions.NullTopicException;
+import co.edu.icesi.fi.tics.tssc.model.RangeParams;
 import co.edu.icesi.fi.tics.tssc.model.TopicValidation;
 import co.edu.icesi.fi.tics.tssc.model.TsscGame;
 import co.edu.icesi.fi.tics.tssc.model.TsscTopic;
@@ -46,6 +47,24 @@ public class TopicController {
 		model.addAttribute("topics", topicDelegate.findAll());
 	
 		return "topics/index";
+	}
+
+	@GetMapping("topics/filterByDate")
+	public String filterByDateShow(Model model) {
+		model.addAttribute("params", new RangeParams());
+		return "topics/filterByDate";
+	}
+	
+
+	
+	@PostMapping("/topics/filterByDate")
+	public String filt(@ModelAttribute("params")  RangeParams params, Model model )
+	{
+		Iterable<TsscTopic> topics = topicDelegate.findByDate(params.getDate1());
+		model.addAttribute("topics",topicDelegate.findByDate(params.getDate1()));
+
+		return "index";
+
 	}
 
 

@@ -83,41 +83,23 @@ public class TsscGameDao implements ITsscGameDao{
 	}
 
 	/*
-	 * El(los) temas (es) con sus datos y cantidad de juegos programados (para una fecha dada)
-	 * . Recibe como parámetro la fecha dada y muestra todos los temas que cumplen.
+	 * El(los) temas (es) con sus datos y cantidad de juegos programados (para una fecha dada) ordenados por hora
+	 * . Recibe como parÃ¡metro la fecha dada y muestra todos los temas que cumplen.
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
 	public List<Object[]> findTopicsByDate(LocalDate date) {
 		
-		String jpql = "SELECT b.tsscTopic , count(b.tsscTopic) FROM TsscGame b WHERE b.id IN (SELECT a.id from TsscGame a WHERE a.scheduledDate = :date"
-				+ "  ORDER BY a.scheduledTime DESC) GROUP BY b.tsscTopic";
+		String jpql = ""
+				+ "SELECT b.tsscTopic.id , count(b.tsscTopic) FROM TsscGame b "
+				+ "WHERE b.id IN (SELECT a.id from TsscGame a WHERE a.scheduledDate = :date"
+				+ ") GROUP BY b.tsscTopic.id ORDER BY MAX(b.scheduledTime)";
 		Query query = entityManager.createQuery(jpql);
 		query.setParameter("date", date);
 		List<Object[]> results = query.getResultList();
 
 		return results;
 	}
-	
-	
-	
-/**
- * El(los) temas (es) con sus datos y de juegos programados (para una fecha dada), ordenados por hora. 
- * @param date, fecha para la cual esta programada el juego
- * @return
- */
-	@Override
-	public List<Object[]> findTopicsByDate2(LocalDate date) {
-				
-	String j1 = "SELECT a,b FROM TsscTopic a RIGHT JOIN TsscGame b ON a = b.tsscTopic"
-				+ " WHERE b.scheduledDate = :date GROUP BY(a.name), b.scheduledTime ORDER BY b.scheduledTime";
-		Query query = entityManager.createQuery(j1);
-		query.setParameter("date", date);
-		List<Object[]> results = query.getResultList();
-
-		return results;
-	}
-	
 	
 	
 	@Override
@@ -159,6 +141,7 @@ public class TsscGameDao implements ITsscGameDao{
 		List<TsscGame> results = query.getResultList();
 		return results;
 	}
+
 	
 	
 }

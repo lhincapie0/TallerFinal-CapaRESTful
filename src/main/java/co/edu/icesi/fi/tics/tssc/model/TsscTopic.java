@@ -48,6 +48,10 @@ public class TsscTopic implements Serializable {
 	@OneToMany(mappedBy = "tsscTopic")
 	@JsonIgnore
 	private List<TsscGame> tsscGames;
+	
+	
+	///Help for render results of scheduled games
+	private int scheduledGames;
 
 	// bi-directional many-to-one association to TsscStory
 	@OneToMany(mappedBy = "tsscTopic")
@@ -131,6 +135,16 @@ public class TsscTopic implements Serializable {
 		getTsscTimecontrols().add(tsscTimecontrol);
 		tsscTimecontrol.setTsscTopic(this);
 		return tsscTimecontrol;
+	}
+	
+	public int getScheduledGames()
+	{
+		return scheduledGames;
+	}
+	
+	public void getScheduledGames(int scheduledGames)
+	{
+		this.scheduledGames = scheduledGames;
 	}
 	
 	public TsscTimecontrol removeTsscTimecontrol(TsscTimecontrol tsscTimecontrol)

@@ -79,7 +79,7 @@ public class TsscGameDelegateTest {
 	}
 	
 	 @Test
-	 @DisplayName("Find all games tests")
+	 @DisplayName("Find all games test")
 	 public void test3()
 	 {
 			when(restTemplate.getForObject(URL+"findAll", TsscGame[].class)).thenReturn(games);

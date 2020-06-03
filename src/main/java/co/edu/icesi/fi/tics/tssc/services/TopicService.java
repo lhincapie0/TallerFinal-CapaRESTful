@@ -1,5 +1,7 @@
 package co.edu.icesi.fi.tics.tssc.services;
 
+import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 import co.edu.icesi.fi.tics.tssc.exceptions.NotEnoughGroupsException;
@@ -15,4 +17,5 @@ public interface TopicService {
 	public Iterable<TsscTopic> findAll();
 	public TsscTopic findTopicById(long id); 
 	public void deleteTopic(TsscTopic topic);
+	List<TsscTopic> findTopicsByDate(LocalDate date);
 }
