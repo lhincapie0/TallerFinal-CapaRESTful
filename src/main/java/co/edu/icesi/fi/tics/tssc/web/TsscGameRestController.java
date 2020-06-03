@@ -1,6 +1,11 @@
 package co.edu.icesi.fi.tics.tssc.web;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -8,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import co.edu.icesi.fi.tics.tssc.exceptions.NotEnoughGroupsException;
@@ -29,6 +35,14 @@ public class TsscGameRestController {
 	public Iterable<TsscGame> findAll()
 	{
 		return gameService.findAll();
+	}
+	
+	
+	@GetMapping("api/games/findByDate/{date1}/{date2}")
+	public Iterable<TsscGame> findByRange( @PathVariable(name = "date1") @DateTimeFormat(iso = ISO.DATE) LocalDate date1,
+			@PathVariable(name = "date2") @DateTimeFormat(iso = ISO.DATE) LocalDate date2)
+	{
+		return gameService.findByDate(date1, date2);
 	}
 	
 	@GetMapping("api/games/findByIdTopic/{id}")

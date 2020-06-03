@@ -1,6 +1,7 @@
 package co.edu.icesi.fi.tics.tssc.services;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.Optional;
 
 import javax.transaction.Transactional;
@@ -118,6 +119,11 @@ public class StoryServiceImpl implements StoryService{
 	@Override
 	public Iterable<TsscStory> findByGame(long id){
 		return storyDao.findByGame(id);
+	}
+
+	@Override
+	public Iterable<TsscStory> findByDate(LocalDate date1, LocalDate date2) {
+		return storyDao.findByDateRange(date1, date2);
 	}
 	
 }

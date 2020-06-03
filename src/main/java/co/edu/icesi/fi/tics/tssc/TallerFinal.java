@@ -32,7 +32,7 @@ import co.edu.icesi.fi.tics.tssc.services.StoryServiceImpl;
 import co.edu.icesi.fi.tics.tssc.services.TopicServiceImpl;
 
 @SpringBootApplication
-public class Taller3Application {
+public class TallerFinal {
 
 
 	
@@ -42,7 +42,7 @@ public class Taller3Application {
 	}
 	public static void main(String[] args) throws NullTopicException, NotEnoughGroupsException, NotEnoughSprintsException, NullGameException, NotExistingTopic, NullAdminException, NullStoryException, BusinessValueException, InitialSprintException, PriorityException, NotExistingGameException {
 
-		ConfigurableApplicationContext c = SpringApplication.run(Taller3Application.class, args);
+		ConfigurableApplicationContext c = SpringApplication.run(TallerFinal.class, args);
 		AdminServiceImpl adminService = c.getBean(AdminServiceImpl.class);
 		TopicServiceImpl topicService = c.getBean(TopicServiceImpl.class);
 		GameServiceImpl gameService = c.getBean(GameServiceImpl.class);

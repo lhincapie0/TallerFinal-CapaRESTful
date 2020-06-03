@@ -1,5 +1,6 @@
 package co.edu.icesi.fi.tics.tssc.delegates;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 
@@ -86,5 +87,20 @@ public class TsscStoryDelegate implements ITsscStoryDelegate {
 		restTemplate.put(URI + "/edit", story, TsscStory.class);
 		
 	}
+	
+
+	@Override
+	public Iterable<TsscStory> findByDate(LocalDate date1, LocalDate date2) {
+		TsscStory[] stories = restTemplate.getForObject(URI +"/findByDate/"+date1+"/"+date2, TsscStory[].class);
+		List<TsscStory> listStories;
+		try {
+			listStories = Arrays.asList(stories);
+			return listStories;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
 
 }

@@ -19,7 +19,7 @@ import co.edu.icesi.fi.tics.tssc.services.TopicService;
 import co.edu.icesi.fi.tics.tssc.services.TopicServiceImpl;
 
 @RestController
-public class TsscTopicRestController {
+public class TsscTopicRestController  {
 
 	
 		@Autowired
@@ -41,6 +41,7 @@ public class TsscTopicRestController {
 		@PostMapping("/api/topics/add")
 		public TsscTopic addTopic(@RequestBody TsscTopic topic)
 		{
+			System.out.println("entra");
 			try {
 				return topicService.saveTopic(topic);
 			} catch (NullTopicException | NotEnoughGroupsException | NotEnoughSprintsException e) {

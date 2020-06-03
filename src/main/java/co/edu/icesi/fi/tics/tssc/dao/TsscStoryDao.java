@@ -1,9 +1,11 @@
 package co.edu.icesi.fi.tics.tssc.dao;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Repository;
@@ -52,5 +54,17 @@ public class TsscStoryDao implements ITsscStoryDao{
 		return entityManager.createQuery(jpql).getResultList();
 	}
 
+
+	
+	@Override
+	public List<TsscStory> findByDateRange(LocalDate date1, LocalDate date2) {
+		String jpql = "SELECT a FROM TsscStory a WHERE a.tsscGame.scheduledDate <= :date2 AND  a.tsscGame.scheduledDate >= :date1";
+		Query query = entityManager.createQuery(jpql);
+		query.setParameter("date1", date1);
+		query.setParameter("date2", date2);
+
+		List<TsscStory> results = query.getResultList();
+		return results;
+	}
 
 }

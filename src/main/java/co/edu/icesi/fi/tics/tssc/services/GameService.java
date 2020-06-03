@@ -1,6 +1,7 @@
 package co.edu.icesi.fi.tics.tssc.services;
 
 
+import java.time.LocalDate;
 import java.util.Optional;
 
 import org.springframework.data.repository.query.Param;
@@ -23,5 +24,6 @@ public interface GameService {
 	public TsscGame findGameById(long id);
 	public void deleteGame(TsscGame game);
 	public Iterable<TsscGame> findByIdTopic( long idTopic);
+	public Iterable<TsscGame> findByDate(LocalDate date1, LocalDate date2);
 
 }

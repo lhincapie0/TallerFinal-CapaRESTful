@@ -1,6 +1,10 @@
 package co.edu.icesi.fi.tics.tssc.web;
 
+import java.time.LocalDate;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,6 +20,7 @@ import co.edu.icesi.fi.tics.tssc.exceptions.NotExistingStory;
 import co.edu.icesi.fi.tics.tssc.exceptions.NullGameException;
 import co.edu.icesi.fi.tics.tssc.exceptions.NullStoryException;
 import co.edu.icesi.fi.tics.tssc.exceptions.PriorityException;
+import co.edu.icesi.fi.tics.tssc.model.TsscGame;
 import co.edu.icesi.fi.tics.tssc.model.TsscStory;
 import co.edu.icesi.fi.tics.tssc.services.StoryServiceImpl;
 
@@ -61,6 +66,8 @@ public class TsscStoryRestController {
 		storyService.deleteStory(storyService.findStoryById(id));
 	}
 	
+	
+	
 	@PutMapping("/api/stories/edit")
 	public TsscStory editStory(@RequestBody TsscStory story)
 	{
@@ -74,6 +81,13 @@ public class TsscStoryRestController {
 			e.printStackTrace();
 			return null;
 		}
+	}
+	
+	@GetMapping("api/stories/findByDate/{date1}/{date2}")
+	public Iterable<TsscStory> findByRange( @PathVariable(name = "date1") @DateTimeFormat(iso = ISO.DATE) LocalDate date1,
+			@PathVariable(name = "date2") @DateTimeFormat(iso = ISO.DATE) LocalDate date2)
+	{
+		return storyService.findByDate(date1, date2);
 	}
 	
 	

@@ -1,6 +1,7 @@
 package co.edu.icesi.fi.tics.tssc.delegates;
 
 import java.nio.charset.Charset;
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Base64;
 import java.util.List;
@@ -8,6 +9,7 @@ import java.util.List;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.client.support.BasicAuthenticationInterceptor;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.client.RestTemplate;
 
 import co.edu.icesi.fi.tics.tssc.model.TsscGame;
@@ -17,7 +19,7 @@ import lombok.extern.apachecommons.CommonsLog;
 @Component
 public class TsscGameDelegate implements ITsscGameDelegate{
 	
-public static final String URI = "http://localhost:8080/api/games";
+public static final String URI = "http://localhost:8080/api/games/";
 	
 	private RestTemplate restTemplate ;
 	
@@ -38,7 +40,7 @@ public static final String URI = "http://localhost:8080/api/games";
 	@Override
 	public TsscGame saveGame(TsscGame game)
 	{
-		return restTemplate.postForEntity("http://localhost:8080/api/games/add", game, TsscGame.class).getBody();
+		return restTemplate.postForEntity(URI+"add", game, TsscGame.class).getBody();
 	}
 	
 	@Override
@@ -49,7 +51,7 @@ public static final String URI = "http://localhost:8080/api/games";
 	@Override
 	public TsscGame findById(long id)
 	{
-		TsscGame game = restTemplate.getForObject(URI+"/findById/"+id, TsscGame.class);
+		TsscGame game = restTemplate.getForObject(URI+"findById/"+id, TsscGame.class);
 		return game;
 	}
 
@@ -67,7 +69,7 @@ public static final String URI = "http://localhost:8080/api/games";
 	
 	public Iterable<TsscGame> findAll()
 	{
-		TsscGame[] games = restTemplate.getForObject("http://localhost:8080/api/games/findAll", TsscGame[].class);
+		TsscGame[] games = restTemplate.getForObject(URI+"findAll", TsscGame[].class);
 
 		List<TsscGame> listGames;
 		try {
@@ -84,7 +86,7 @@ public static final String URI = "http://localhost:8080/api/games";
 
 	public Iterable<TsscGame> findByIdTopic(long idTopic)
 	{
-		TsscGame[] games = restTemplate.getForObject("http://localhost:8080/api/games/findByIdTopic/"+idTopic, TsscGame[].class);
+		TsscGame[] games = restTemplate.getForObject(URI+"findByIdTopic/"+idTopic, TsscGame[].class);
 
 		List<TsscGame> listGames;
 		try {
@@ -95,6 +97,20 @@ public static final String URI = "http://localhost:8080/api/games";
 			return null;
 		}
 		
+	}
+
+
+	@Override
+	public Iterable<TsscGame> findByDate(LocalDate date1, LocalDate date2) {
+		TsscGame[] games = restTemplate.getForObject(URI +"findByDate/"+date1+"/"+date2, TsscGame[].class);
+		List<TsscGame> listGames;
+		try {
+			listGames = Arrays.asList(games);
+			return listGames;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 	
 

@@ -26,6 +26,7 @@ import co.edu.icesi.fi.tics.tssc.exceptions.NullGameException;
 import co.edu.icesi.fi.tics.tssc.exceptions.NullStoryException;
 import co.edu.icesi.fi.tics.tssc.exceptions.PriorityException;
 import co.edu.icesi.fi.tics.tssc.model.GameValidation;
+import co.edu.icesi.fi.tics.tssc.model.RangeParams;
 import co.edu.icesi.fi.tics.tssc.model.StoryValidation;
 import co.edu.icesi.fi.tics.tssc.model.StoryValidation2;
 import co.edu.icesi.fi.tics.tssc.model.TsscGame;
@@ -159,4 +160,24 @@ public class StoryController {
 		return "stories/indexStoriesGame";
 		
 	}
+	
+
+	@GetMapping("/stories/filterByDate")
+	public String filterByDate(Model model) {
+		model.addAttribute("params", new RangeParams());
+		return "stories/filterByDate";
+	}
+
+
+	
+	@PostMapping("/stories/filterByDate")
+	public String filt(@ModelAttribute("params")  RangeParams params, Model model )
+	{
+		model.addAttribute("stories",storyDelegate.findByDate(params.getDate1(),params.getDate2()));
+		model.addAttribute("games", gameDelegate.findAll());
+
+		return "stories/stories-range";
+
+	}
+
 }

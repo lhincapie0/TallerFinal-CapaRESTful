@@ -1,5 +1,6 @@
 package co.edu.icesi.fi.tics.tssc.services;
 
+import java.time.LocalDate;
 import java.util.Optional;
 
 import co.edu.icesi.fi.tics.tssc.exceptions.BusinessValueException;
@@ -20,4 +21,5 @@ public interface StoryService {
 	public TsscStory findStoryById(long id);
 	public void deleteStory(TsscStory story);
 	public Iterable<TsscStory> findByGame(long id);
+	public Iterable<TsscStory> findByDate(LocalDate date1, LocalDate date2);
 }

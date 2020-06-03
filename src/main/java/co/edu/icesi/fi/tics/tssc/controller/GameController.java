@@ -1,5 +1,6 @@
 package co.edu.icesi.fi.tics.tssc.controller;
 
+import java.time.LocalDate;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,7 @@ import co.edu.icesi.fi.tics.tssc.exceptions.NotExistingTopic;
 import co.edu.icesi.fi.tics.tssc.exceptions.NullGameException;
 import co.edu.icesi.fi.tics.tssc.exceptions.NullTopicException;
 import co.edu.icesi.fi.tics.tssc.model.GameValidation;
+import co.edu.icesi.fi.tics.tssc.model.RangeParams;
 import co.edu.icesi.fi.tics.tssc.model.TopicValidation;
 import co.edu.icesi.fi.tics.tssc.model.TsscGame;
 import co.edu.icesi.fi.tics.tssc.model.TsscTopic;
@@ -49,6 +51,25 @@ public class GameController {
 		model.addAttribute("games", gameDelegate.findAll());
 		model.addAttribute("topics", topicDelegate.findAll());
 		return "games/index";
+	}
+	
+	
+
+	@GetMapping("/games/filterByDate")
+	public String filterByDate(Model model) {
+		model.addAttribute("params", new RangeParams());
+		return "games/filterByDate";
+	}
+
+
+	
+	@PostMapping("/games/filterByDate")
+	public String filt(@ModelAttribute("params")  RangeParams params, Model model )
+	{
+		model.addAttribute("games",gameDelegate.findByDate(params.getDate1(),params.getDate2()));
+		model.addAttribute("topics", topicDelegate.findAll());
+		return "games/games-range";
+
 	}
 
 	@GetMapping("games/add")
@@ -114,6 +135,9 @@ public class GameController {
 			Model model) throws NotExistingGameException, NullGameException, NotEnoughGroupsException, NotEnoughSprintsException, NotExistingTopic {
 		if (action != null && !action.equals("Cancelar")) {
 			if (bindingResult.hasErrors()) {
+				model.addAttribute("topics", topicDelegate.findAll());
+				TsscTopic mock = new TsscTopic();
+				model.addAttribute("mock", mock);
 				return "/games/edit-game";
 			} else {
 			//	gameService.editGame(game);
@@ -128,6 +152,7 @@ public class GameController {
 	public String getGamesByTopic(@PathVariable long id, Model model)
 	{
 		model.addAttribute("games", gameDelegate.findByIdTopic(id));
+		model.addAttribute("topics", topicDelegate.findAll());
 		return "games/indexGamesTopic";
 	}
 

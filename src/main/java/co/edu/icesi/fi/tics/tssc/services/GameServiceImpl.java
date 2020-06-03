@@ -1,5 +1,6 @@
 package co.edu.icesi.fi.tics.tssc.services;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -160,6 +161,12 @@ public class GameServiceImpl implements GameService{
 		gameDao.delete(game);
 	}
 	
+	
+	@Override
+	public Iterable<TsscGame> findByDate(LocalDate date1, LocalDate date2)
+	{
+		return gameDao.findByDateRange(date1, date2);
+	}
 	
 	@Override
 	public Iterable<TsscGame> findByIdTopic( long idTopic){
