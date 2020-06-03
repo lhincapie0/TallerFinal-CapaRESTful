@@ -64,11 +64,14 @@ public class GameController {
 
 	
 	@PostMapping("/games/filterByDate")
-	public String filt(@ModelAttribute("params")  RangeParams params, Model model )
+	public String filt(@RequestParam(value = "action", required = true) String action,@ModelAttribute("params")  RangeParams params, Model model )
 	{
+		if (action != null && !action.equals("Cancel")) {
 		model.addAttribute("games",gameDelegate.findByDate(params.getDate1(),params.getDate2()));
 		model.addAttribute("topics", topicDelegate.findAll());
 		return "games/games-range";
+		}
+		else return "redirect:/";
 
 	}
 

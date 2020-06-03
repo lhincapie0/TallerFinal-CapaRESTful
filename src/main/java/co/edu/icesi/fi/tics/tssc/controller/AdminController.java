@@ -12,14 +12,7 @@ import co.edu.icesi.fi.tics.tssc.services.AdminServiceImpl;
 public class AdminController {
 
 	
-	AdminServiceImpl adminService;
-	
-	@Autowired
-	public AdminController(AdminServiceImpl adminService)
-	{
-		this.adminService = adminService;
-	}
-	
+
 	@GetMapping("/login")
 	public String login() {
 		return "/loginAdmin";

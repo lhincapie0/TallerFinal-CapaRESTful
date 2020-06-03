@@ -5,6 +5,7 @@ import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.assertj.core.util.Arrays;
@@ -114,6 +115,17 @@ public class TsscTopicDelegateTest {
 		Mockito.when(restTemplate.getForObject(URL+"findById/20", TsscTopic.class)).thenReturn(topic);
 		assertEquals(topic, topicDelegate.findById(topic.getId()));
 
+	}
+	
+	@Test
+	@DisplayName("Find topics by date")
+	public void test6()
+	{	
+		LocalDate date = LocalDate.parse("2019-12-27");
+
+		when(restTemplate.getForObject(URL+"findByDate/"+date, TsscTopic[].class)).thenReturn(topics);
+		List<Object> expectedList = Arrays.asList(topics);
+		assertEquals(expectedList, topicDelegate.findByDate(date));		
 	}
 	
 	

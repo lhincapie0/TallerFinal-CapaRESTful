@@ -58,12 +58,18 @@ public class TopicController {
 
 	
 	@PostMapping("/topics/filterByDate")
-	public String filt(@ModelAttribute("params")  RangeParams params, Model model )
+	public String filt(@RequestParam(value = "action", required = true) String action ,@ModelAttribute("params")  RangeParams params, Model model )
 	{
-		Iterable<TsscTopic> topics = topicDelegate.findByDate(params.getDate1());
-		model.addAttribute("topics",topicDelegate.findByDate(params.getDate1()));
+		
+		if (action != null && !action.equals("Cancel")) {
+			Iterable<TsscTopic> topics = topicDelegate.findByDate(params.getDate1());
+			model.addAttribute("topics",topicDelegate.findByDate(params.getDate1()));
 
-		return "index";
+			return "topics/topics-filtered";
+		}
+			else return "redirect:/";
+		
+		
 
 	}
 

@@ -48,10 +48,7 @@ public class TallerFinal {
 		GameServiceImpl gameService = c.getBean(GameServiceImpl.class);
 		StoryServiceImpl storyService = c.getBean(StoryServiceImpl.class);
 		
-		
-	//CREACIÓN DE USUARIOS
-		
-		/**TsscAdmin admin1 = new TsscAdmin();
+	/**	TsscAdmin admin1 = new TsscAdmin();
 		admin1.setPassword("{noop}123");
 		admin1.setUsername("Super Administrador");
 		admin1.setUser("Super Administrador");
@@ -72,58 +69,7 @@ public class TallerFinal {
 		user.setUsername("Usuario");
 		user.setUser("Usuario");
 		user.setSuperAdmin("user");
-		adminService.saveAdmin(user);
-		
-		//Creación de temas
-		TsscTopic topic = new TsscTopic();
-		topic.setDefaultGroups(2);
-		topic.setDefaultSprints(3);
-		topic.setName("TSC2");
-		topic.setDescription("Tema para est. ing");
-		topicService.saveTopic(topic);
-		
-		TsscTopic topic2 = new TsscTopic();
-		topic2.setDefaultGroups(2);
-		topic2.setDefaultSprints(3);
-		topic2.setName("TS Biol");
-		topic2.setDescription("Tema para est. biol");
-		topicService.saveTopic(topic2);
-		
-		
-		//Creación de juegos
-		TsscGame game = new TsscGame();
-		game.setName("Completa P-12");
-		game.setNGroups(4);
-		game.setNSprints(3);
-		Date date = new Date(2323223232L);
-		game.setScheduledDate(convertToLocalDateViaInstant(date));
-		gameService.saveGame(game, topic);
-		TsscGame game2 = new TsscGame();				
-		game2.setName("Black Jack");
-		game2.setNGroups(10);
-		game2.setNSprints(3);
-		gameService.saveGame(game2, topic);
-		
-		
-		
-		//Creación de historias
-		TsscStory story = new TsscStory();
-		story.setDescription("Historia 1 CP12");
-		story.setBusinessValue(new BigDecimal("10000"));
-		story.setPriority(new BigDecimal("100"));
-		story.setInitialSprint(new BigDecimal("300"));
-		
-		TsscStory story2 = new TsscStory();
-		story2.setDescription("Historia 2 CP12");
-		story2.setBusinessValue(new BigDecimal("40000"));
-		story2.setPriority(new BigDecimal("300"));
-		story2.setInitialSprint(new BigDecimal("10000"));
-		
-		storyService.saveStory(story,game);
-		storyService.saveStory(story2, game);**/
-		
-		
-	
+		adminService.saveAdmin(user);**/
 		
 
 

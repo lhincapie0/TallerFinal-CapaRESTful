@@ -92,7 +92,10 @@ public class TopicServiceImpl implements TopicService{
 				topic.setScheduledGames(scheduledGames);
 				topics[i]= topic;
 			}
+
 			ret = Arrays.asList(topics);
+			System.out.println(ret.toString());
+
 			return ret;
 		}else
 		{
