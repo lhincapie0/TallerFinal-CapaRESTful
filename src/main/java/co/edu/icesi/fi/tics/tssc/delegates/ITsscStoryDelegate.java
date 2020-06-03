@@ -3,8 +3,6 @@ package co.edu.icesi.fi.tics.tssc.delegates;
 import java.time.LocalDate;
 
 import org.springframework.web.client.RestTemplate;
-
-import co.edu.icesi.fi.tics.tssc.model.TsscGame;
 import co.edu.icesi.fi.tics.tssc.model.TsscStory;
 
 public interface ITsscStoryDelegate {

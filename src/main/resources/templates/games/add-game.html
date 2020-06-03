@@ -107,11 +107,11 @@
 							<label for="patient" class="col-form-label">Tema asociado</label> 
 							<br>
 							<select
-								th:field="*{tsscTopic}">
+								th:field="*{idTopic}">
 								<option value="00"> </option>
 								<option th:each="topic : ${topics}" th:value="${topic.id}"
 									class="form-control" th:text="${topic.name}"
-									th:selected="${game.tsscTopic=topic}"></option>
+									th:selected="${game.idTopic=topic.id}"></option>
 							</select> 
 						</div>
 						

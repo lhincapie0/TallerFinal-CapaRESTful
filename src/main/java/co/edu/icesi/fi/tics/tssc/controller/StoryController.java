@@ -83,16 +83,11 @@ public class StoryController {
 		{
 			if(bindingResult.hasErrors())
 			{
-				System.out.println("STORY "+story.getIdGame());
-				System.out.println("STORY "+story.getTsscGame());
-
-
 				model.addAttribute("games", gameDelegate.findAll());
 				return "stories/add-story";
 			}else
 			{
-				System.out.println(story.toString());
-
+				story.setTsscGame(gameDelegate.findById(story.getIdGame()));
 				storyDelegate.saveStory(story);
 			}
 		}else {

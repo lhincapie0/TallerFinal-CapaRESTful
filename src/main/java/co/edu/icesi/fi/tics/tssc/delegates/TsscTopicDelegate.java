@@ -27,7 +27,7 @@ import co.edu.icesi.fi.tics.tssc.model.TsscTopic;
 @Component
 public class TsscTopicDelegate implements ITsscTopicDelegate{
 	
-	public static final String URI = "http://localhost:8080/api/topics";
+	public static final String URL = "http://localhost:8080/api/topics/";
 	
 	private RestTemplate restTemplate ;
 	
@@ -48,11 +48,7 @@ public class TsscTopicDelegate implements ITsscTopicDelegate{
 	@Override
 	public TsscTopic saveTopic(TsscTopic topic)
 	{
-		System.out.println("GUARDADO");
-		TsscTopic T = restTemplate.postForEntity("http://localhost:8080/api/topics/add", topic, TsscTopic.class).getBody();
-		System.out.println("T" +T);
-
-		return T;
+		return restTemplate.postForObject(URL+"add", topic, TsscTopic.class);
 	}
 	
 	@Override
@@ -63,28 +59,28 @@ public class TsscTopicDelegate implements ITsscTopicDelegate{
 	@Override
 	public TsscTopic findById(long id)
 	{
-		TsscTopic topic = restTemplate.getForObject("http://localhost:8080/api/topics/findById/"+id, TsscTopic.class);
+		TsscTopic topic = restTemplate.getForObject(URL+"findById/"+id, TsscTopic.class);
 		return topic;
 	}
 
 	@Override
 	public void deleteTopic(long id)
 	{
-		restTemplate.delete(URI+"/delete/"+id);
+		restTemplate.delete(URL+"delete/"+id);
 	}
 	
 	
 	@Override
 	public void editTopic(TsscTopic topic)
 	{
-		restTemplate.put(URI + "/edit", topic, TsscTopic.class);
+		restTemplate.put(URL + "edit", topic, TsscTopic.class);
 	}
 	
 	
 	@Override
 	public Iterable<TsscTopic> findAll()
 	{
-		TsscTopic[] topics = restTemplate.getForObject("http://localhost:8080/api/topics/findAll", TsscTopic[].class);
+		TsscTopic[] topics = restTemplate.getForObject(URL+"findAll", TsscTopic[].class);
 
 		List<TsscTopic> listTopics;
 		try {

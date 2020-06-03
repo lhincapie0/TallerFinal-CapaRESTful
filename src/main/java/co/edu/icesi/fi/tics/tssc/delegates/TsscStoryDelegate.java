@@ -6,14 +6,12 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
-
-import co.edu.icesi.fi.tics.tssc.model.TsscGame;
 import co.edu.icesi.fi.tics.tssc.model.TsscStory;
 
 @Component
 public class TsscStoryDelegate implements ITsscStoryDelegate {
 
-	public static final String URI = "http://localhost:8080/api/stories";
+	public static final String URL = "http://localhost:8080/api/stories/";
 	
 	private RestTemplate restTemplate ;
 	
@@ -32,7 +30,7 @@ public class TsscStoryDelegate implements ITsscStoryDelegate {
 	@Override
 	public TsscStory saveStory(TsscStory story) {
 
-		return restTemplate.postForEntity("http://localhost:8080/api/stories/add", story, TsscStory.class).getBody();
+		return restTemplate.postForObject(URL+"add", story, TsscStory.class);
 	}
 
 	@Override
@@ -42,19 +40,19 @@ public class TsscStoryDelegate implements ITsscStoryDelegate {
 
 	@Override
 	public TsscStory findById(long id) {
-		return restTemplate.getForObject(URI+"/findById/"+id, TsscStory.class);
+		return restTemplate.getForObject(URL+"findById/"+id, TsscStory.class);
 	}
 
 	@Override
 	public void deleteStory(long id) {
-		restTemplate.delete(URI+"/delete/"+id);
+		restTemplate.delete(URL+"delete/"+id);
 		
 	}
 
 	@Override
 	public Iterable<TsscStory> findAll() {
 
-		TsscStory[] stories = restTemplate.getForObject("http://localhost:8080/api/stories/findAll", TsscStory[].class);
+		TsscStory[] stories = restTemplate.getForObject(URL+"findAll", TsscStory[].class);
 
 		List<TsscStory> listStories;
 		try {
@@ -69,7 +67,7 @@ public class TsscStoryDelegate implements ITsscStoryDelegate {
 	@Override
 	public Iterable<TsscStory> findByGameId(long id) {
 
-		TsscStory[] stories = restTemplate.getForObject("http://localhost:8080/api/stories/findByGameId/"+id, TsscStory[].class);
+		TsscStory[] stories = restTemplate.getForObject(URL+"findByGameId/"+id, TsscStory[].class);
 
 		List<TsscStory> listStories;
 		try {
@@ -83,15 +81,14 @@ public class TsscStoryDelegate implements ITsscStoryDelegate {
 	@Override
 	public void editStory(TsscStory story) {
 		
-		System.out.println("entra al delegado");
-		restTemplate.put(URI + "/edit", story, TsscStory.class);
+		restTemplate.put(URL + "edit", story, TsscStory.class);
 		
 	}
 	
 
 	@Override
 	public Iterable<TsscStory> findByDate(LocalDate date1, LocalDate date2) {
-		TsscStory[] stories = restTemplate.getForObject(URI +"/findByDate/"+date1+"/"+date2, TsscStory[].class);
+		TsscStory[] stories = restTemplate.getForObject(URL +"findByDate/"+date1+"/"+date2, TsscStory[].class);
 		List<TsscStory> listStories;
 		try {
 			listStories = Arrays.asList(stories);

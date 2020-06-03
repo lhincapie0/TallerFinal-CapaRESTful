@@ -31,7 +31,9 @@ public class TsscStory implements Serializable {
 	@Column(name = "ALT_DESC_SHOWN")
 	private String altDescShown;
 
+	@NotNull(groups = StoryValidation.class, message = "La historia debe estar asociada a un juego")
 	private long idGame;
+	
 	@Column(name = "ALT_DESCRIPTON")
 	private String altDescripton;
 

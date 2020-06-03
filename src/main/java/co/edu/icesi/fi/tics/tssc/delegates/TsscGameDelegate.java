@@ -1,20 +1,12 @@
 package co.edu.icesi.fi.tics.tssc.delegates;
 
-import java.nio.charset.Charset;
 import java.time.LocalDate;
 import java.util.Arrays;
-import java.util.Base64;
 import java.util.List;
-
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.client.support.BasicAuthenticationInterceptor;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.client.RestTemplate;
 
 import co.edu.icesi.fi.tics.tssc.model.TsscGame;
-import co.edu.icesi.fi.tics.tssc.model.TsscTopic;
-import lombok.extern.apachecommons.CommonsLog;
 
 @Component
 public class TsscGameDelegate implements ITsscGameDelegate{
@@ -40,7 +32,7 @@ public static final String URI = "http://localhost:8080/api/games/";
 	@Override
 	public TsscGame saveGame(TsscGame game)
 	{
-		return restTemplate.postForEntity(URI+"add", game, TsscGame.class).getBody();
+		return restTemplate.postForObject(URI+"add", game, TsscGame.class);
 	}
 	
 	@Override

@@ -2,7 +2,6 @@ package co.edu.icesi.fi.tics.tssc.delegates;
 
 import org.springframework.web.client.RestTemplate;
 
-import co.edu.icesi.fi.tics.tssc.model.TsscStory;
 import co.edu.icesi.fi.tics.tssc.model.TsscTimecontrol;
 
 public interface ITsscTimeControlDelegate {

@@ -87,6 +87,7 @@ public class GameController {
 	public String saveTopic(@RequestParam(value = "action", required = true) String action, @Validated(GameValidation.class) @ModelAttribute("game") TsscGame game,
 			BindingResult bindingResult, Model model) throws NotEnoughGroupsException, NotEnoughSprintsException, NullGameException, NotExistingTopic 
 	{
+		System.out.println("TOPIC"+ game.getIdTopic());
 		if(!action.equals("Cancelar"))
 		{
 			if(bindingResult.hasErrors())
@@ -98,6 +99,10 @@ public class GameController {
 				return "games/add-game";
 			}else
 			{
+				if(game.getIdTopic() != 0)
+				{
+					game.setTsscTopic(topicDelegate.findById(game.getIdTopic()));
+				}
 				gameDelegate.saveGame(game);
 			}
 		}else {
@@ -140,7 +145,11 @@ public class GameController {
 				model.addAttribute("mock", mock);
 				return "/games/edit-game";
 			} else {
-			//	gameService.editGame(game);
+
+				if(game.getIdTopic() != 0)
+				{
+					game.setTsscTopic(topicDelegate.findById(game.getIdTopic()));
+				}
 				gameDelegate.editGame(game);
 			}
 		}
