@@ -14,17 +14,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private LoggingAccessDeniedHandler accessDeniedHandler;
 
+
 	@Override
 	protected void configure(HttpSecurity httpSecurity) throws Exception {
 
-		httpSecurity.csrf().disable().authorizeRequests().antMatchers("/index/**").hasAnyRole("super","admin","user")
+		httpSecurity.csrf().
+		disable().
+		
+		authorizeRequests().antMatchers("/api/**").permitAll().
+
+		antMatchers("/index/**").hasAnyRole("super","admin","user")
 		.antMatchers("/topics/**").hasRole("super")
 
 		.antMatchers("/games/").hasAnyRole("super","admin","user")
 		.antMatchers("/games/add-topic").hasAnyRole("super","admin")
 
 		.antMatchers("/stories/").hasAnyRole("admin","super","user")
-		.antMatchers("/api/**").permitAll()
 
 		.antMatchers("/stories/add-story").hasAnyRole("admin","super")
 		.antMatchers("/h2-console/**").hasRole("super").antMatchers("/console/**").hasRole("super")

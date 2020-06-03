@@ -1,4 +1,4 @@
-package co.edu.icesi.fi.tics.tssc.web;
+package co.edu.icesi.fi.tics.tssc.restController;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;

@@ -1,4 +1,4 @@
-package co.edu.icesi.fi.tics.tssc.web;
+package co.edu.icesi.fi.tics.tssc.restController;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -34,14 +34,12 @@ public class TsscTopicRestController  {
 		@GetMapping("/api/topics/findById/{id}")
 		public TsscTopic findById(@PathVariable long id)
 		{
-			System.out.println("AQUI ENTRA");
 			return topicService.findTopicById(id);
 		}
 	
 		@PostMapping("/api/topics/add")
 		public TsscTopic addTopic(@RequestBody TsscTopic topic)
 		{
-			System.out.println("entra");
 			try {
 				return topicService.saveTopic(topic);
 			} catch (NullTopicException | NotEnoughGroupsException | NotEnoughSprintsException e) {

@@ -1,4 +1,4 @@
-package co.edu.icesi.fi.tics.tssc.web;
+package co.edu.icesi.fi.tics.tssc.restController;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
